@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Document</title>
+    <link href="./idnex.css" as="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <script>
+        // const colors = require('tailwindcss/colors')
+        // bg 代表的 css 属性是 backgroundColor ， bg-base 会找到对应的主题下面的  var(--color-base)对应的颜色 赋值给backgroundColor.base
+        const colors = tailwind.colors;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: colors.amber,
+                        lime: colors.lime,
+                        rose: colors.rose,
+                        orange: colors.orange,
+                        sky: colors.sky,
+                        violet: colors.violet
+                    },
+                },
+                backgroundColor: {
+                    //utilities like `bg-base` and `bg-primary`
+                    base: 'var(--color-base)',
+                    'off-base': 'var(--color-off-base)',
+                    primary: 'var(--color-primary)',
+                    secondary: 'var(--color-secondary)',
+                    muted: 'var(--color-text-muted)',
+                },
+                textColor: {
+                    //like `text-base` and `text-primary`
+                    base: 'var(--color-text-base)',
+                    muted: 'var(--color-text-muted)',
+                    'muted-hover': 'var(--color-text-muted-hover)',
+                    primary: 'var(--color-primary)',
+                    secondary: 'var(--color-secondary)',
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+
+        @layer base {
+    /* 没有主题时候的默认样式*/
+  :root {
+    --color-base: theme('colors.white'); 
+    --color-text-base: theme('colors.black'); 
+    --color-off-base: theme('colors.gray.50'); 
+    --color-text-muted: theme('colors.gray.600');
+    --color-text-muted-hover: theme('colors.gray.500'); 
+    --color-primary: theme('colors.blue.500'); 
+    --color-secondary:theme('colors.blue.700');
+  }
+
+  .theme-light {
+    --color-base: theme('colors.white'); 
+    --color-text-base: theme('colors.black'); 
+    --color-off-base: theme('colors.gray.50');
+    --color-text-muted: theme('colors.gray.600');
+    --color-text-muted-hover: theme('colors.gray.500'); 
+    --color-primary: theme('colors.blue.600'); 
+    --color-secondary:theme('colors.blue.300'); 
+  }
+
+  .theme-dark {
+    --color-base: theme('colors.gray.900');
+    --color-text-base: theme('colors.gray.100'); 
+    --color-off-base: theme('colors.gray.800'); 
+    --color-text-muted:theme('colors.gray.300'); 
+    --color-text-muted-hover: theme('colors.gray.200');
+    --color-primary: theme('colors.blue.500'); 
+    --color-secondary: theme('colors.blue.200'); 
+  }
+
+  .theme-sky {
+    --color-base: theme('colors.gray.50'); /*  background : 作用于整个 container 的 */
+    --color-off-base: theme('colors.sky.200'); /*  background : 作用于添加该 样式 的 块级元素*/
+    --color-text-base: theme('colors.gray.400'); 
+    --color-text-muted:theme('colors.gray.600'); 
+    --color-text-muted-hover: theme('colors.rose.500');
+    --color-primary: theme('colors.sky.600'); /*  color : 添加  text-primary的元素的字体颜色 */
+    --color-secondary: theme('colors.sky.700'); 
+  }
+  .theme-violet {
+    --color-base: theme('colors.gray.50'); 
+    --color-off-base: theme('colors.violet.300'); 
+    --color-text-base: theme('colors.gray.800'); 
+    --color-text-muted:theme('colors.gray.600'); 
+    --color-text-muted-hover: theme('colors.rose.500');
+    --color-primary: theme('colors.violet.500'); 
+    --color-secondary: theme('colors.violet.600'); 
+  }
+
+
+  .theme-evergreen {
+    --color-base: theme('colors.green.900'); 
+    --color-text-base: theme('colors.green.100');
+    --color-off-base: theme('colors.green.800');
+    --color-text-muted:theme('colors.green.200'); 
+    --color-text-muted-hover: theme('colors.green.500');
+    --color-primary: theme('colors.lime.800'); 
+    --color-secondary: theme('colors.lime.50'); 
+  }
+}
+
+    </style>
+    <style>
+        .plr-10 {
+            padding: 0 10px;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .test {
+            background-color: antiquewhite;
+        }
+
+        .align-items {
+            align-items: center;
+        }
+
+        .avatar-img {
+            width: 150px;
+            aspect-ratio: 3 / 3;
+            border-radius: 10px;
+        }
+
+        .header-info {
+            height: 100%;
+            padding: 20px;
+            text-align: right;
+            box-sizing: border-box;
+        }
+
+        .text-ident {
+            text-indent: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container  bg-base theme-sky max-w-screen-lg mx-auto py-10" id="container">
+        <header class="content-header bg-off-base flex flex-row  align-items">
+            <div class="header-left basis-3/4">
+                <div class="flex md:justify-center md:items-center">
+                    <h1 class="text-3xl font-semibold mb-2 mr-2">王甜</h1>
+                    <h2 class="text-xl mb-2">前端开发</h2>
+                </div>
+                <ul class="link-list text-left flex justify-center mb-2 flex-wrap">
+                    <li class="mr-5 flex">
+                        <svg class="svg-inline--fa fa-map-marker-alt fa-w-12 mr-2 svg-icon" aria-hidden="true"
+                            focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path class="" style="" fill="currentColor"
+                                d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
+                            </path>
+                        </svg>北京
+                    </li>
+                    <li class="mr-5 flex">
+                        <svg class="svg-inline--fa fa-envelope fa-w-16 mr-2 svg-icon" aria-hidden="true"
+                            focusable="false" data-prefix="fas" data-icon="envelope" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path class="" style="" fill="currentColor"
+                                d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z">
+                            </path>
+                        </svg>1434215837@qq.com
+                    </li>
+                    <li class="mr-5 flex">
+                        <svg class="svg-inline--fa fa-phone fa-w-16 mr-2 svg-icon" aria-hidden="true" focusable="false"
+                            data-prefix="fas" data-icon="phone" role="img" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512">
+                            <path class="" style="" fill="currentColor"
+                                d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z">
+                            </path>
+                        </svg>18202988194
+                    </li>
+                    <li class="mr-5 flex">
+                        <svg class="svg-inline--fa fa-birthday-cake fa-w-14 mr-2 svg-icon" aria-hidden="true"
+                            focusable="false" data-prefix="fas" data-icon="birthday-cake" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path class="" style="" fill="currentColor"
+                                d="M448 384c-28.02 0-31.26-32-74.5-32-43.43 0-46.825 32-74.75 32-27.695 0-31.454-32-74.75-32-42.842 0-47.218 32-74.5 32-28.148 0-31.202-32-74.75-32-43.547 0-46.653 32-74.75 32v-80c0-26.5 21.5-48 48-48h16V112h64v144h64V112h64v144h64V112h64v144h16c26.5 0 48 21.5 48 48v80zm0 128H0v-96c43.356 0 46.767-32 74.75-32 27.951 0 31.253 32 74.75 32 42.843 0 47.217-32 74.5-32 28.148 0 31.201 32 74.75 32 43.357 0 46.767-32 74.75-32 27.488 0 31.252 32 74.5 32v96zM96 96c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40zm128 0c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40zm128 0c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40z">
+                            </path>
+                        </svg>1994/09
+                    </li>
+                </ul>
+                <ul class="link-list text-left flex justify-center first-line:text-left flex-wrap"><!--[-->
+                    <li class="mr-5 flex">
+                        <a href="https://wangtian-wang.github.io/blogs/" target="_blank" class="text-primary">
+                            <svg class="svg-inline--fa fa-link fa-w-16 mr-2 svg-icon" style="" aria-hidden="true"
+                                focusable="false" data-prefix="fas" data-icon="link" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path class="" style="" fill="currentColor"
+                                    d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z">
+                                </path>
+                            </svg>个人网站</a>
+                    </li>
+                    <li class="mr-5 flex">
+                        <a href="https://github.com/wangtian-wang/" target="_blank" class="text-primary">
+                            <svg class="svg-inline--fa fa-github fa-w-16 mr-2 svg-icon" aria-hidden="true"
+                                focusable="false" data-prefix="fab" data-icon="github" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                                <path class="" style="" fill="currentColor"
+                                    d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                                </path>
+                            </svg>Github</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-info  mr-8  basis-1/4 ">
+                <img class="inline avatar-img" src="./avtar.jpeg" alt="">
+            </div>
+        </header>
+        <div class="content-part">
+            <div class="content-section">
+                <div class="content-section-holder mt-7">
+                    <header class="section-title-header">
+                        <h2 class="text-xl font-semibold mb-2 border-l-4 pl-3 py-1 bg-off-base">工作经历</h2>
+                    </header>
+                    <div class="content-section-container"><!--[-->
+                        <div class="section-detail-item my-5">
+                            <div class="normal-content pr-2 pl-2">
+                                <header>
+                                    <div class="flex md:items-center md:justify-between mb-2">
+                                        <div><span class="text-lg font-semibold"> 中航信科技有限技术公司 - 前端开发</span><span
+                                                class="ml-4"><svg
+                                                    class="svg-inline--fa fa-map-marker-alt fa-w-12 fa-sm mr-1 svg-icon"
+                                                    style="" aria-hidden="true" focusable="false" data-prefix="fas"
+                                                    data-icon="map-marker-alt" role="img"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                                    <path class="" style="" fill="currentColor"
+                                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
+                                                    </path>
+                                                </svg>北京</span></div>
+                                        <h4 class="md:text-right"><!--[-->2022/03 - 2022/08<!--]--></h4>
+                                    </div>
+                                </header>
+                                <div class="item-description py-2">
+                                    <p><strong>前端开发</strong>在航信任职前端开发，负责航旅纵横商城模块weex 开发，商城模块后台管理系统开发。主要开发的内容如下:</p>
+                                    <p><br></p>
+                                    <ul>
+                                        <li>新功能开发:
+                                            <p class="text-ident">
+                                                1: 飞享会页面新功能开发(基于原生 js事件，实现商城飞享会页面商品分类的滑动切换;商品推荐模块开发等)。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 商城管理端新功能开发(优惠券管理；商品上架；物流管理，商品编辑等)
+                                            </p>
+                                            <p class="text-ident">
+                                                3: 商城 weex 端活动组件的封装(倒计时，商品列表等)。
+                                            </p>
+                                            <p class="text-ident">
+                                                4: 商城部分页面埋点开发。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            bug修复：
+                                            <p class="text-ident">
+                                                1: 商城管理端登录状态失效后，重定向错误问题。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 商品编辑，上架时图片无法上传，表格无法编辑等问题。
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-detail-item my-5">
+                            <div class="normal-content pr-2 pl-2">
+                                <header>
+                                    <div class="flex md:items-center md:justify-between mb-2">
+                                        <div><span class="text-lg font-semibold">中软国际 - 前端开发</span><span
+                                                class="ml-4"><svg
+                                                    class="svg-inline--fa fa-map-marker-alt fa-w-12 fa-sm mr-1 svg-icon"
+                                                    style="" aria-hidden="true" focusable="false" data-prefix="fas"
+                                                    data-icon="map-marker-alt" role="img"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                                    <path class="" style="" fill="currentColor"
+                                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
+                                                    </path>
+                                                </svg>北京</span></div>
+                                        <h4 class="md:text-right"><!--[-->2020/11 - 2021/12<!--]--></h4>
+                                    </div>
+                                </header>
+                                <div class="item-description py-2">
+                                    <p>在中软国际担任前端开发，被中软国际外包到华为智能洗车业务线，负责智能汽车后台管理系统(ADS)的微前端改造与业务线需求开发。主要开发内容如下：</p>
+                                    <p><br></p>
+                                    <ul>
+                                        <li>ADS 的微前端升级
+                                            <p class="text-ident">
+                                                1: 使用 qiankun，对整个微前端系统进行升级。测试并修复升级项目后带来的应用跳转失败，store 存储问题。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 使用 gzip 压缩，代码分包，treeshaking,组件库共用等方式，解决项目升级后，部分页面性能差的问题，提高页面的响应速度。
+                                            </p>
+                                            <p class="text-ident">
+                                                3: 解决登录状态混乱，导致的登录状态失效问题。
+                                            </p>
+                                            <p class="text-ident">
+                                                4: 排查解决项目中的常见报错问题。
+                                            </p>
+                                            <p class="text-ident">
+                                                5: 排查解决国际化切换后，刷新页面后国际化失效问题。
+                                            </p>
+                                            <p class="text-ident">
+                                                6: 协助同事，进行组件库的抽离。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            ADS 的迭代业务开发
+                                            <p class="text-ident">
+                                                1: 开发业务更新后，弹框提醒用户的功能。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 部分页面的 表格，echarts 开发。
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="section-detail-item my-5">
+                            <div class="normal-content pr-2 pl-2">
+                                <header>
+                                    <div class="flex md:items-center md:justify-between mb-2">
+                                        <div><span class="text-lg font-semibold">西安千测软件 - 前端开发</span><span
+                                                class="ml-4"><svg
+                                                    class="svg-inline--fa fa-map-marker-alt fa-w-12 fa-sm mr-1 svg-icon"
+                                                    style="" aria-hidden="true" focusable="false" data-prefix="fas"
+                                                    data-icon="map-marker-alt" role="img"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                                    <path class="" style="" fill="currentColor"
+                                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
+                                                    </path>
+                                                </svg>西安</span></div>
+                                        <h4 class="md:text-right"><!--[-->2017/10 - 2020/10<!--]--></h4>
+                                    </div>
+                                </header>
+                                <div class="item-description py-2">
+                                    <p>在千策软件担任前端开发。负责 高校思政纪念馆项目，随心购小程序，海图优选小程序的开发。主要开发内容如下：</p>
+                                    <p><br></p>
+                                    <ul>
+                                        <li>高校思政纪念馆项目主要开发内容如下:
+                                            <p class="text-ident">
+                                                1: 根据 UI设计，搭建整个管理系统的大部分页面。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 完成每个页面不同功能的开发。比如拖拽排序，echarts展示，文件上传，富文本开发等。
+                                            </p>
+                                            <p class="text-ident">
+                                                3: 完成与后端工程师接口的联调。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            随心购小程序项目主要开发内容如下：
+                                            <p class="text-ident">
+                                                1: 登录模块 获取用户权限、封装网络请求。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 商品详情 基于微信小程序原生接口,封装商品详情组件。
+                                            </p>
+                                            <p class="text-ident">
+                                                3: 地址管理 基于微信小程序原生接口,封装地址管理组件,实现动态选择添加地址。
+                                            </p>
+                                            <p class="text-ident">
+                                                4: 商品搜索 基于微信小程序原生接口, 封装搜索组件 实现历史数据记录、新内容搜索功能。
+                                            </p>
+                                        </li>
+                                        <li>
+                                            海图优选小程序主要开发内容如下：
+                                            <p class="text-ident">
+                                                1: 登录页面，商品列表页面图片滑动切换，图片预览，图片下载开发。
+                                            </p>
+                                            <p class="text-ident">
+                                                2: 后台接口联调,功能自测与 bug 修复。
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div><!--]-->
+                    </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="content-section-holder mt-7">
+                    <header class="section-title-header">
+                        <h2 class="text-xl font-semibold mb-2 border-l-4 pl-3 py-1 bg-off-base"> 相关技能</h2>
+                    </header>
+                    <ul class="plr-10">
+                        <li>
+                            <strong>专业知识:</strong>
+                            <p class="text-ident">
+                                掌握:HTML5,CSS3,JS(原型链, 闭包, 作用域, 事件, 模块化,ES6语法);TypeScript。
+                            </p>
+                            <p>
+                                熟悉:HTTP, TCP/IP; websocket;浏览器缓存; 事件循环; 前端存储 ; 跨域以及解决方法;页面性能优化方法。
+                            </p>
+                        </li>
+                        <li>
+                            <strong>技术栈:</strong>
+                            <p class="text-ident">
+                                Vue2(vue-router/vuex)、Vue3(vue-router/vuex)、weex,微前端(qiankun)、element-ui、element-plus、axios、echarts、vue-quill-editor、小程序、uni-app等。
+                            </p>
+                        </li>
+                        <li>
+                            <strong>工程化:</strong>
+                            <p class="text-ident">
+                                熟练Git操作; 熟悉Webpack, Node, Vite。
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="content-section-holder mt-7">
+                    <header class="section-title-header">
+                        <h2 class="text-xl font-semibold mb-2 border-l-4 pl-3 py-1 bg-off-base">教育经历</h2>
+                    </header>
+                    <p class="flex space-between plr-10">
+                        <span>
+                            <strong>
+                                2012/09 ~ 2016/07
+                            </strong>
+                            卫生事业管理学 | 本科
+                        </span>
+                        <strong>
+                            西安医学院
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="content-section-holder mt-7">
+                    <header class="section-title-header">
+                        <h2 class="text-xl font-semibold mb-2 border-l-4 pl-3 py-1 bg-off-base">自我评价</h2>
+                    </header>
+                    <ul class="plr-10">
+                        <li class="text-ident">
+                            1: 对前端开发非常感兴趣,通过看前端技术方面的书籍和动手实践来持续提升自己的专业能力.
+                        </li>
+                        <li class="text-ident">
+                            2: 善于使用调试工具,快速定位开发中遇到的问题,有独立解决问题的能力.
+
+                        </li>
+                        <li class="text-ident">
+                            3: 通过大学英语 <strong>CET-6</strong>级考试，能够熟练阅读英文文档.
+
+                        </li>
+                        <li class="text-ident">
+                            4: 有良好的沟通能力和团队合作意识.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button id="btn" class="py-2 font-semibold rounded-md pr-2 pl-2" style="background-color:#7dd3fc ;">
+        点击切换颜色
+    </button>
+
+
+
+
+    <script>
+        const oBtn = document.getElementById('btn');
+        const oDom = document.getElementById('container')
+        oBtn.addEventListener('click', () => {
+            let curTheme = [...oDom.classList].find((item) => { return item.startsWith('theme-') })
+            if (curTheme === 'theme-sky') {
+                oDom.classList.remove('theme-sky')
+                oDom.classList.add('theme-violet')
+            } else {
+                oDom.classList.remove('theme-violet')
+                oDom.classList.add('theme-sky')
+            }
+        }, false)
+
+    </script>
+</body>
+
+</html>
