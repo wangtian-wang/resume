@@ -47,8 +47,8 @@
     </script>
     <style type="text/tailwindcss">
 
-        @layer base {
-    /* 没有主题时候的默认样式*/
+
+        /* 没有主题时候的默认样式*/
   :root {
     --color-base: theme('colors.white'); 
     --color-text-base: theme('colors.black'); 
@@ -108,7 +108,7 @@
     --color-primary: theme('colors.lime.800'); 
     --color-secondary: theme('colors.lime.50'); 
   }
-}
+
 
     </style>
     <style>
@@ -127,6 +127,10 @@
 
         .test {
             background-color: antiquewhite;
+        }
+
+        .justify-center {
+            justify-content: center;
         }
 
         .align-items {
@@ -156,7 +160,7 @@
     <div class="container  bg-base theme-sky max-w-screen-lg mx-auto py-10" id="container">
         <header class="content-header bg-off-base flex flex-row  align-items">
             <div class="header-left basis-3/4">
-                <div class="flex md:justify-center md:items-center">
+                <div class="flex justify-center  align-items  ">
                     <h1 class="text-3xl font-semibold mb-2 mr-2">王甜</h1>
                     <h2 class="text-xl mb-2">前端开发</h2>
                 </div>
